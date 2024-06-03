@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processed Image</title>
+    <style>
+        body {
+            background: rgba(0, 0, 0, 0.9);
+        }
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            text-align: center;
+        }
+        .container img {
+            max-width: 100%;
+            height: auto;
+        }
+        .container a.button, .container button {
+            display: inline-block;
+            margin-top: 20px;
+            color: #fff;
+            background: #16a085;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            border-bottom: 4px solid #117A60;
+            transition: all .2s ease;
+        }
+        .container a.button:hover, .container button:hover {
+            background: #149174;
+            color: #0C5645;
+        }
+        .container a.button:active, .container button:active {
+            border: 0;
+        }
+        .container a.upload-button {
+            display: inline-block;
+            margin-top: 20px;
+            color: #fff;
+            background: #3498db;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            border-bottom: 4px solid #2980b9;
+            transition: all .2s ease;
+        }
+        .container a.upload-button:hover {
+            background: #2980b9;
+            color: #fff;
+        }
+        .container a.upload-button:active {
+            border: 0;
+        }
+        .container p {
+            margin-top: 20px;
+            color: #ffffff;
+            font-family: Arial;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="color: #ffffff;">Processed Image</h1>
+        {% if image_upload.processed_image %}
+            <img src="{{ image_upload.processed_image.url }}" alt="Processed Image">
+            <br>
+            <a href="{{ image_upload.processed_image.url }}" download="processed_{{ image_upload.image.name }}" class="button">
+                Download Processed Image
+            </a>
+            <br>
+            <a href="{% url 'upload_image' %}" class="upload-button">Upload Another Image</a>
+        {% else %}
+            <p>No processed image available.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
